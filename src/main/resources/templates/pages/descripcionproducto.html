@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/catalogo.css">
+    <!-- <link rel="stylesheet" href="../../static/css/index.css"> -->
+    <title>Descripcion productos</title>
+</head>
+<body>
+   
+   <section class="title">
+           <form th:action="@{/descripcionproducto}" method="POST" id="form">
+                <input type="hidden" th:value="${productos.IdProducto}" name="idProduct" />
+                <h2>Vista Previa <span>de producto</span></h2>
+        </section>
+        <section  th:each="producto : ${productos}" class="container-purchase">
+            <div class="rectangle border1">
+                <h3 th:text="${producto.NombreProducto}"></h3>
+                 <img th:src="@{/foto/mostrarFoto/} + ${producto.getFotoProducto().iterator().next().getId()}" th:alt="${producto.NombreProducto}" 
+                     th:value="${producto.IdProducto}" class="u-full-width">
+            </div>
+            <div class="rectangle border2">
+                <h3>Marca del Producto</h3>
+                <p th:text="${producto.marcaProducto}"</p>
+                    <h3>Cantidad Disponible</h3>
+                    <p name="cantidadProducto"  th:text="${producto.StockProducto}" class="input-cantity"  </p>
+                    <h3>Precio</h3>
+                    <p th:text="${producto.PrecioProducto}" id="valueProduct"></p>
+                    <h3>Total</h3>
+                    <p id="totalPurchase"></p>
+                    
+                    <h3>Cantidad requerida</h3>
+                     <input name="cantidadProducto"  type="number" min="1" th:max="${producto.StockProducto}" class="input-cantity" placeholder="cantidad" required>
+            </div>
+        </section>
+               
+                    <section class="buttons">
+                                    <input type="submit" value="Comprar" class="btn">
+                                    <input type="button" class="btn" value="Volver"  onclick="location.href='/producto/catalogo'">
+                    </section>
+        
+        </form>
+
+<footer th:insert="ThHtmls/partesComunes::menuFooterUsuario"></footer>
+
+<script src="javascript-catalogo.js"></script>
+</body>
+
+</html>

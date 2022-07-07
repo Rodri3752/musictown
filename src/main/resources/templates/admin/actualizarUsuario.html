@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.css">
+    <link href="dist/hamburgers.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/admin.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>
+    <script src="/js/dashboard.js" defer></script>
+    <script src="/js/alertas.js" defer></script>
+    <script src="/js/formulario.js" defer></script>
+    <title>Actualizar Usuario</title>
+</head>
+<body>
+    <div class="dashboard">
+        
+        <aside class="sidebar" th:fragment="menuAdmin"></aside>    
+    
+        <div class="principal">
+            <div class="barra-mobile">
+                <h1>Music Town</h1>
+                <div class="menu">
+                    <img src="/assets/img/menu.svg" alt="img menu" id="mobile-menu">
+                </div>
+            </div>
+            
+            <div class="barra">
+                <p>Hola: <span>Admin </span></p>
+            
+                <a href="/logout" class="cerrar-sesion">Cerrar Sesión</a>
+            </div>
+    
+            <div class="contenedor">
+                <section class="contenedorS">
+                    <h2>Actualizar Instrumento</h2>
+        
+                    <div th:if="${error}!=null" class="card">
+                        <div class="card-body">
+                            <p class="error" th:text="${error}"></p>
+                        </div>
+                    </div> 
+        
+        
+                    <form class="contact-form" action="registrar" method="POST" enctype="multipart/form-data">
+                        <fieldset>
+                            <div class="contenedorDiv">
+                                <div class="campo">
+                                    <label for="">Nombre:</label>
+                                    <input
+                                        class="input" 
+                                        type="text" 
+                                        name="nombre"  
+                                        placeholder="Nombre del instrumento"
+                                        title="El nombre de usuario sólo puede contener letras"
+                                        pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" 
+                                        required
+                                        spellcheck="false"
+                                        autocomplete="off"
+                                    />
+                                </div>
+                                <div class="campo">
+                                    <label for="">Precio:</label>
+                                    <input
+                                        class="input" 
+                                        type="number" 
+                                        name="precio" 
+                                        placeholder="Precio del instrumento"
+                                        required
+                                    />
+                                </div>
+                                <div class="campo">
+                                    <label for="">Imagen:</label>
+                                    <input 
+                                        type="file" 
+                                        name="imagen"
+                                        multiple
+                                        class="imagen"
+                                        required
+                                    /> 
+                                </div>
+                                <div class="campo">
+                                    <label for="">Unidades:</label>
+                                    <input 
+                                        type="number" 
+                                        name="unidades" 
+                                        class="unidades" 
+                                        placeholder="Cantidad de unidades"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div class="boton">
+                                <input type="submit" class="btnPrincipal" value="Actualizar Instrumento">
+                            </div>
+                        </fieldset>
+                    </form>
+                </section>
+            </div>
+    </div> 
+</body>
+</html>

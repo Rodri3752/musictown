@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.css">
+    <link href="dist/hamburgers.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>
+    <script src="/js/dashboard.js" defer></script>
+    <script src="/js/alertas.js" defer></script>
+    <script src="/js/formulario.js" defer></script>
+    <title>Crear Usuario</title>
+</head>
+<body>
+    <div class="dashboard">
+        
+        <aside th:insert="ThHtmls/partesComunes :: menuAdmin"></aside>    
+    
+        <div class="principal">
+            <div class="barra-mobile">
+                <h1>Music Town</h1>
+                <div class="menu">
+                    <img src="/assets/img/menu.svg" alt="img menu" id="mobile-menu">
+                </div>
+            </div>
+            
+            <div class="barra">
+                <p>Hola: <span>Admin </span></p>
+            
+                <a href="/logout" class="cerrar-sesion">Cerrar Sesión</a>
+            </div>
+    
+            <div class="contenedor">
+                <section class="contenedorS">
+                    <h2 class="h2">Agregar Nuevo Usuario</h2>
+        
+                    <div th:if="${error}!=null" class="card">
+                        <div class="card-body">
+                            <p class="error" th:text="${error}"></p>
+                        </div>
+                    </div> 
+        
+        
+                    <form class="contact-form" action="registrar" method="POST" enctype="multipart/form-data">
+                        <fieldset class="fieldset">
+                            <div class="contenedorDiv">
+                                <div class="campo">
+                                    <label for="">Nombre de usuario:</label>
+                                    <input
+                                        class="input is-active" 
+                                        type="text" 
+                                        name="nombre"  
+                                        placeholder="Nombre de usuario"
+                                        title="El nombre no puede contener mas de 20 caracteres y solo letras y numeros"        
+                                        pattern="^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü]{3,20}$" 
+                                        required
+                                        spellcheck="false"
+                                        autocomplete="off"
+                                    />
+                                </div>
+                                <div class="campo">
+                                    <label for="">E-mail:</label>
+                                    <input
+                                        class="input" 
+                                        type="email" 
+                                        name="mail" 
+                                        placeholder="Tu E-mail"
+                                        title="Debe ingresar un formato correcto para el mail"
+                                        pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$"
+                                        required
+                                        spellcheck="false"
+                                    />
+                                </div>
+                                <div class="campo">
+                                    <label for="">Contraseña:</label>
+                                    <input type="password" name="clave" class="password input" placeholder="Tu Contraseña" required>
+                                </div>
+                                <div class="campo">
+                                    <label for="">Repetir Contraseña:</label>
+                                    <input type="password" name="clave1" class="password input" placeholder="Repita su contraseña" required>
+                                </div>
+                            </div>
+                            <div class="boton">
+                                <input type="submit" class="btnPrincipal" value="Crear Usuario">
+                            </div>
+                        </fieldset>
+                    </form>
+                </section>
+                <div class="boton">
+                    <a href="instrumentos.html" class="btnVolver" >< Volver</a>
+                </div>
+            </div>
+    </div>
+
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
